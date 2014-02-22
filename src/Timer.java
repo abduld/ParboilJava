@@ -1,24 +1,25 @@
 import java.util.ArrayList;
 
 
-public class Timer {
+public final class Timer {
 	ArrayList<TimerElement> elems;
 	
 	Timer() {
 		elems = new ArrayList<TimerElement>();
 	}
 
-	public void start(String category, String message) {
+	public TimerElement start(String category, String message) {
 		TimerElement elem = new TimerElement(category, message);
 		elem.start();
+		return elem;
 	}
 	
-	public void stop(String category, String message) {
+	public void stop(TimerElement elem) {
 		elem.stop();
 	}
 	
 	public void stopAll() {
-		for (elem in elems) {
+		for (TimerElement elem : elems) {
 			elem.stop();
 		}
 	}

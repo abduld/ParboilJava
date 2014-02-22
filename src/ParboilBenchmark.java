@@ -1,4 +1,4 @@
 
 public interface ParboilBenchmark {
-	public void run();
+	public void benchmark();
 }
