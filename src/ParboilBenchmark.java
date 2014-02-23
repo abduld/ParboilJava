@@ -1,4 +1,5 @@
 
 public interface ParboilBenchmark {
-	public void benchmark();
+	public boolean run();
+	public String getName();
 }

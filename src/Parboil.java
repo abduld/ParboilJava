@@ -7,7 +7,9 @@ public class Parboil {
 					new VectorAddBenchmark()
 			};
 			for (ParboilBenchmark benchmark : benchmarks) {
-				benchmark.benchmark();
+				if (benchmark.run() == false) {
+					System.out.println("Failed to run benchmark " + benchmark.getName());
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
