@@ -29,6 +29,7 @@ public class VectorFileReader {
 			val = in.nextFloat();
 			data[ii] = val;
 			
+			ii++;
 			if (ii == nElements) {
 				break ;
 			}
