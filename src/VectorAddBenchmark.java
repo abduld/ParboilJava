@@ -9,7 +9,6 @@ public class VectorAddBenchmark implements ParboilBenchmark {
 	float[] intput2Data;
 	float[] trueOutputData;
 	float[] outputData;
-	CheckSolution check;
 
 	public final static String name = "VectorAdd";
 	public final static String input1File = "dataset/vecadd/1/input0.raw";
@@ -18,11 +17,11 @@ public class VectorAddBenchmark implements ParboilBenchmark {
 	
 	VectorAddBenchmark() throws IOException {
 
-		check = new CheckSolution();
-		
+		timer.start("IO", "Reading inputs");
 		VectorFileReader input1Reader = new VectorFileReader(input1File);
 		VectorFileReader input2Reader = new VectorFileReader(input2File);
 		VectorFileReader outputReader = new VectorFileReader(outputFile);
+		timer.stop();
 		
 		intput1Data = input1Reader.getData();
 		intput2Data = input2Reader.getData();
@@ -30,8 +29,9 @@ public class VectorAddBenchmark implements ParboilBenchmark {
 		
 		nElements = input1Reader.getNElements();
 		
-		
+		timer.start("Allocate", "Allocating output data");
 		outputData = new float[nElements];
+		timer.stop();
 	}
 	
 	@Override
@@ -61,6 +61,8 @@ public class VectorAddBenchmark implements ParboilBenchmark {
 		executor.shutdown();
 		while (!executor.isTerminated()) {}
 
+		System.out.println(timer);
+		
 		return check.check(trueOutputData, outputData);
 	}
 

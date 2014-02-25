@@ -10,6 +10,7 @@ public final class Timer {
 
 	public TimerElement start(String category, String message) {
 		TimerElement elem = new TimerElement(category, message);
+		elems.add(elem);
 		elem.start();
 		return elem;
 	}
@@ -17,14 +18,25 @@ public final class Timer {
 	public void stop(TimerElement elem) {
 		elem.stop();
 	}
+
+	public void stop() {
+		if (elems.size() > 0) {
+			stop(elems.get(elems.size() - 1));
+		}
+	}
 	
 	public void stopAll() {
 		for (TimerElement elem : elems) {
 			elem.stop();
 		}
 	}
-	
-	public String summarize() {
-		return "";
+
+	@Override
+	public String toString() {
+		String s = "";
+		for (TimerElement elem : elems) {
+			s += elem + "\n";
+		}
+		return s;
 	}
 }

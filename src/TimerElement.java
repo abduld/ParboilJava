@@ -16,8 +16,6 @@ public class TimerElement {
 		this.category = category;
 		this.message = message;
 		stopWatch = new StopWatch();
-		
-		start();
 	}
 
 	public void start() {
